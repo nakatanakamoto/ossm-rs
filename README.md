@@ -53,6 +53,10 @@ More information can be found [here](https://docs.espressif.com/projects/rust/bo
 cargo xtask run <board_name>
 ```
 
+### Rust Analyzer
+
+There are several instances in the code where we need to perform specific actions based on the chipset being built for. Currently the way this is managed is to set the features and target of cargo in the [settings file](.vscode/settings.json). Be sure to choose the correct target triple for the chipset you have specified.
+
 ### First Boot
 
 When you first start the machine it may appear that nothing is working.

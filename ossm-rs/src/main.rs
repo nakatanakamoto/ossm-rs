@@ -6,9 +6,6 @@
     holding buffers for the duration of a data transfer."
 )]
 
-#[cfg(not(feature = "board_selected"))]
-compile_error!("No board selected!");
-
 mod board;
 mod config;
 mod motion;

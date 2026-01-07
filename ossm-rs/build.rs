@@ -1,6 +1,25 @@
 use vergen_gitcl::{Emitter, GitclBuilder};
 
 fn main() {
+
+    let boards = [
+        cfg!(feature = "board_waveshare"),
+        cfg!(feature = "board_seeed_xiao_s3"),
+        cfg!(feature = "board_atom_s3"),
+        cfg!(feature = "board_ossm_v3"),
+        cfg!(feature = "board_ossm_alt_v2"),
+        cfg!(feature = "board_custom_s3"),
+        cfg!(feature = "board_custom_c6"),
+    ];
+
+    let number_of_boards = boards.iter().filter(|&&b| b).count();
+
+    match number_of_boards {
+        0 => panic!("No board selected! Enable exactly one: --features board_esp32"),
+        1 => println!("cargo:rustc-cfg=board_selected"),
+        _ => panic!("Multiple boards selected! Enable only one."),
+    }
+
     linker_be_nice();
     println!("cargo:rustc-link-arg=-Tdefmt.x");
     // make sure linkall.x is the last linker script (otherwise might cause problems with flip-link)

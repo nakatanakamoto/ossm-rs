@@ -26,11 +26,6 @@ struct Toolchain {
     targets: Option<Vec<String>>,
 }
 
-#[derive(Serialize)]
-struct ToolchainFile {
-    toolchain: Toolchain,
-}
-
 impl Mcu {
     fn target_triple(&self) -> &str {
         match self {
